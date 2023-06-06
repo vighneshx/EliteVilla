@@ -1,0 +1,364 @@
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: url(../assets/nature.avif);
+  background-size: cover;
+  background-repeat: none;
+  color: #fff;
+}
+
+/* Logo */
+.logo {
+  height: 100px;
+  width: 100px;
+}
+
+@keyframes revealAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+svg {
+  width: 350px;
+  height: 150px;
+  transition: all 1s ease-in-out;
+}
+
+.elitevilla {
+  font-family: 'Pacifico', cursive;
+  font-size: 48px;
+  font-weight: normal;
+  fill: white;
+  /* Neon golden color */
+  text-shadow: 0 0 10px rgb(116, 110, 110), 0 0 20px white, 0 0 30px white, 0 0 40px white;
+  /* Glowing effect */
+}
+
+@keyframes particleAnimation {
+  0% {
+    opacity: 1;
+    r: 1;
+    transform: translate(0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    r: 10;
+    transform: translate(30px, -30px);
+  }
+}
+
+.particle {
+  fill: white;
+  /* Neon golden color */
+  opacity: 0;
+}
+
+.particle-animation {
+  animation: particleAnimation 2s infinite ease-out;
+}
+
+/* Navbar styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(206, 206, 206, 0.326);
+  height: 150px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.company-name {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  position: relative;
+  right: 25%;
+  font-size: 150%;  
+}
+
+.nav-links li {
+  margin-right: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/*text*/
+.text {
+  text-align: center;
+}
+
+/* Grid layout styles */
+/* Grid layout styles */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 1rem;
+  position: relative;
+  top: 200px;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-item img {
+  width: 400px;
+  height: 250px;
+  border-radius: 10px;
+  transition: transform 0.5s ease-out;
+}
+
+.grid-item:hover img {
+  transform: scale(1.1);
+}
+
+
+/* Image hover effect */
+.villa-image {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.grid-item:hover .villa-image {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+/* Footer styles */
+footer {
+  background-color: rgba(39, 37, 37, 0.432);
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer-sections {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.left-sections,
+.right-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-sections div,
+.right-sections div {
+  margin: 0.5rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.social-icons img {
+  width: 30px;
+  height: auto;
+  margin: 0 0.5rem;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+}
+
+.community,
+.company,
+.help-desk,
+.blog,
+.resources,
+.mobile-app {
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+h3 {
+  position: relative;
+  bottom: -30px;
+  font-size: 80px;
+  font-family: 'Brush Script MT', cursive;
+  fill: yellow;
+  text-shadow: 0 0 10px rgb(116, 110, 110), 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow;
+
+}
+
+p {
+  position: relative;
+  bottom: -60px;
+  font-size: 30px;
+}
+
+/* background effectss */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+/* test */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container a{
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid red;
+  margin: 40px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 5px;
+  -webkit-box-reflect: below 0px linear-gradient(transparent, #0002);
+  transition: 0.5s;
+}
+
+.container a:hover{
+  color: #000000;
+  box-shadow: 0 0 10px orangered, 0 0 20px orangered, 0 0 40px orangered, 0 0 80px orangered, 0 0 160px orangered, 0 0 320px orangered, 0 0 640px orangered;
+  transition-delay: 0.75s;
+}
+
+.container a span{
+  position: relative;
+  z-index: 1;
+}
+.container a{
+  background-color: rgba(218, 165, 32, 0);
+}
+
+.container a::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: red;
+  box-shadow: 5px -8px 0 red,
+              5px 8px 0 red;
+  transition: width 0.5s, left 0.5s, height 0.5s, box-shadow 0.5s;
+transition-delay: 0s, 0s;
+}
+
+.container a:hover::before{
+  width: 60%;
+  height: 100%;
+  left: -2px;
+  box-shadow: 5px 0 0 red,
+              5px 0 0 red;
+  transition-delay: 0s, 0.25s, 0.5s;
+}
+
+.container a::after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: red;
+  box-shadow: -5px -8px 0 red,
+              -5px 8px 0 red;
+  transition: width 0.5s, left 0.5s, height 0.5s, box-shadow 0.5s;
+  transition-delay:  0s, 0s;
+}
+
+.container a:hover::after{
+  width: 60%;
+  height: 100%;
+  right: -2px;
+  box-shadow: -5px 0 0 red,
+              -5px 0 0 red;
+  transition-delay: 0s, 0.25s, 0.5s;
+}
+
+  
+/* Neon hover effect for the 'Bekijken' container */
+.view-container1,
+.view-container2,
+.view-container3,
+.view-container4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s, text-shadow 0.3s;
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Apply neon effect when hovering */
+.grid-item:hover .view-container1,
+.grid-item:hover .view-container2,
+.grid-item:hover .view-container3,
+.grid-item:hover .view-container4 {
+  opacity: 1;
+  text-shadow: 0 0 5px #4bb8db, 0 0 10px #4bb8db, 0 0 20px #4bb8db, 0 0 30px #4bb8db, 0 0 40px #4bb8db;
+  border: 2px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* Hide overflow on the main div */
+.main-div {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Adjust the image border radius */
+.villa-image {
+  border-radius: 5px;
+}
+
+
+.icon-container{
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,60 @@
+<DOCTYPE! html>
+<html>
+    <head>
+        <title>LOGIN/REGISTER</title>
+        <link type="text/css" rel="stylesheet" href="css/logincss.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+      <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <div class="header animate__animated animate__slideInLeft animate__delay-1s">
+            <span>Innova'ome</span>        
+        </div>
+        <div class="bg1">
+            <div class="formbox animate__animated animate__fadeIn animate__delay-2s">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="togg-btn clr" onclick="login()"> LOGIN</button>
+                    <button type="button" class="togg-btn clr" onclick="register()">REGISTER</button>
+                </div>
+            
+            <div class="social-icons">
+                <img src="https://img.icons8.com/metro/26/000000/facebook-new--v2.png"/>
+                <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png"/>  
+                <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png"/>
+            </div> 
+                
+                <form id="login" class="input-grp " >
+                    <input type="text" placeholder="user id" class="input-field"><br>
+                    <input type="password" placeholder="password" class="input-field"><br>
+                    <small><input type="checkbox" class="check"><span>REMEMBER PASSWORD</span></small><br>
+                    <button type="submit"  name="btnsub" class="smtbtn"> LOGIN</button>
+                </form>
+                <form id="register" class="input-grp" >
+                    <input type="text" class="input-field1" placeholder="Name">
+                    <input type="email" placeholder="email" class="input-field1"><br>
+                    <input type="password" placeholder="password" class="input-field1"><br>
+                    <input type="checkbox1" class="check1"><span>I agree all T&C<sup>*</sup></span><br>
+                    <button type="submit"  name="btnsub" class="smtbtn1">REGISTER</button>
+                </form>
+        </div>
+    </div>
+    <script>
+        var x = document.getElementById("login"); 
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+        
+        function register(){
+            x.style.left="-360px";
+            y.style.left="10px";
+            z.style.left="110px";
+        }
+        function login(){
+            x.style.left="50px";
+            y.style.left="430px";
+            z.style.left="0px";
+        }
+    </script>
+    </body>
+</html>
+    
