@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Ons - EliteVilla</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/contact.css">
+</head>
+
+
+
+<body onload="displayErrorMessage()">
+    <nav class="navbar navbar-expand navbar-light" aria-label="Second navbar example">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/logo.png" class="img-fluid rounded" width="25%">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
+                aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: lightgray;" aria-current="page" href="/html/main.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: #D4AF37" href="/html/contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-center">Neem contact met ons op</h1>
+                    <p class="text-center">Heb je vragen of wil je iets delen? Voel je vrij om contact met ons op te
+                        nemen.</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" id="contactForm" name="contactForm"
+                                action="../scripts/php/contact-form.php">
+                                <div class="form-group">
+                                    <label for="name">Naam:</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="voornaam achternaam" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Adres:</label>
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        placeholder="adres naam" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Telefoonnummer:</label>
+                                    <input type="tel" class="form-control" name="phone" id="phone"
+                                        placeholder="06 12345678" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="elitevilla@gmail.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question">Vraag / Opmerking:</label>
+                                    <textarea class="form-control" name="question" id="question" rows="4"
+                                        placeholder="Hello..." required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Verstuur</button>
+                                </div>
+                            </form>
+                            <div id="form-message-warning mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer">
+          <div class="row">
+            <ul>
+              <li><a href="#">Mobile app</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#">Company</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <img src="../assets/logo.png" class="img-fluid" width="5%">
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#">Help desk</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#">Resources</a></li>
+            </ul>
+          </div>
+          <div class="row">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+          </div>
+    
+    
+    
+          <div class="row">
+            | Copyright © 2021 Ardjun, Vighnesh & Samuel - All rights reserved |
+          </div>
+        </div>
+      </footer>
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
+
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/errorMessage.js"></script>
+</body>
+
+
+
+</html>

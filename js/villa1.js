@@ -42,7 +42,44 @@ let bids = [];
             document.getElementById('bidForm').reset();
         }
 
+ 
+        
 
+
+
+
+        const slideshowContainer = document.querySelector('.slideshow-container');
+const slides = Array.from(slideshowContainer.querySelectorAll('.slide'));
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightbox-image');
+
+let currentIndex = 0;
+
+function changeSlide(direction) {
+  currentIndex += direction;
+
+  if (currentIndex < 0) {
+    currentIndex = slides.length - 1;
+  } else if (currentIndex >= slides.length) {
+    currentIndex = 0;
+  }
+
+  slideshowContainer.style.transition = "transform 2.5s ease-in-out";
+  slideshowContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+function openLightbox(index) {
+  lightbox.style.display = 'flex';
+  lightboxImage.src = slides[index].querySelector('img').src;
+}
+
+function closeLightbox() {
+  lightbox.style.display = 'none';
+}
+
+setInterval(() => {
+  changeSlide(1);
+}, 4000);
 
 
     
