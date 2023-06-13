@@ -1,3 +1,37 @@
+<?php
+$servername = "localhost";
+$username = "ardjun";
+$password = "Dokter2012";
+$dbname = "EliteVilla";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Retrieve the form data
+  $firstName = $_POST['firstName'];
+  $lastName = $_POST['lastName'];
+  $phoneNumber = $_POST['phoneNumber'];
+  $email = $_POST['email'];
+  $bid = $_POST['bid'];
+
+  // Prepare and execute the SQL query to insert the bid into the database
+  $sql = "INSERT INTO bids (firstName, lastName, phoneNumber, email, bid) VALUES ('$firstName', '$lastName', '$phoneNumber', '$email', '$bid')";
+  if ($conn->query($sql) === TRUE) {
+      echo "Bid submitted successfully.";
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +94,8 @@
 
         <div id="place-bid">
           <h2>Doe een bod</h2>
-          <form id="bidForm" onsubmit="saveBid(event)">
+          <form id="bidForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="saveBid(event)">
+
             <input type="text" id="firstName" placeholder="Voornaam" required>
             <input type="text" id="lastName" placeholder="Achternaam" required>
             <input type="tel" id="phoneNumber" placeholder="Telefoonnummer" required>
@@ -123,53 +158,23 @@
       | © Elite Villa || Made by Ardjun Samuel & Vighnesh |
     </div>
   </footer>
-
-  <script>
-    let bids = [];
-
-    function saveBid(event) {
-      event.preventDefault();
-
-      // Verzamel de data
-      var firstName = document.getElementById('firstName').value;
-      var lastName = document.getElementById('lastName').value;
-      var phoneNumber = document.getElementById('phoneNumber').value;
-      var email = document.getElementById('email').value;
-      var bidInput = document.getElementById('bid');
-      var bid = Number(bidInput.value);
-
-      // Controleer of het bod hoger is dan het hoogste bod
-      if (bids.length > 0 && bid <= Math.max(...bids.map(b => b.bid))) {
-        alert('Je bod moet hoger zijn dan het huidige hoogste bod.');
-        bidInput.classList.add('error');
-        return;
-      }
-
-      bidInput.classList.remove('error');
-
-      // Voeg het bod toe aan de lijst van biedingen
-      bids.push({
-        firstName,
-        lastName,
-        phoneNumber,
-        email,
-        bid
-      });
-
-      // Sorteer de biedingen en toon de top 3
-      bids.sort((a, b) => b.bid - a.bid);
-      let topBids = bids.slice(0, 3);
-
-      let bidDiv = document.getElementById('bids');
-      bidDiv.innerHTML = '';
-      for (let bid of topBids) {
-        bidDiv.innerHTML += `<p>${bid.firstName} ${bid.lastName}: €${bid.bid}</p>`;
-      }
-
-      // Reset het formulier
-      document.getElementById('bidForm').reset();
+    <?php
+// Retrieve the top 3 bids from the database
+$sql = "SELECT * FROM bids ORDER BY bid DESC LIMIT 3";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<p>" . $row['firstName'] . " " . $row['lastName'] . ": €" . $row['bid'] . "</p>";
     }
-  </script>
+}
+
+$conn->close();
+
+?>
+
+
+
+  
 </body>
 
 </html>
