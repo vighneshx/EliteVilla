@@ -17,25 +17,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve the form data
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $phoneNumber = $_POST['phoneNumber'];
-    $email = $_POST['email'];
-    $bid = $_POST['bid'];
-
-    // Prepare and execute the SQL query to insert the bid into the database
-    $sql = "INSERT INTO bids (firstName, lastName, phoneNumber, email, bid) VALUES ('$firstName', '$lastName', '$phoneNumber', '$email', '$bid')";
-    if ($conn->query($sql) === TRUE) {
-        echo "Bid submitted successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
-
 // Retrieve the villa number from the URL parameters
-$villaNumber = isset($_GET['villa']) ? $_GET['villa'] : '';
+$villaNumber = '';
+
+if (isset($_GET['villa'])) {
+    $villaNumber = $_GET['villa'];
+}
 
 // Define the villa information arrays
 $villas = [
@@ -90,13 +77,6 @@ $villas = [
     ]
 ];
 
-// Check if the requested villa number exists in the villas array
-if (!array_key_exists($villaNumber, $villas)) {
-    // Redirect to a default page or show an error message
-    header('Location: default.php');
-    exit;
-}
-
 $villaInfo = $villas[$villaNumber];
 $cssFile = $villaInfo['cssFile'];
 ?>
@@ -110,9 +90,25 @@ $cssFile = $villaInfo['cssFile'];
 </head>
 
 <body>
-    <header>
-        <!-- Header content goes here -->
+	<header>
+        <nav>
+            <div class="logo-container">
+                <img src="../assets/logo.png" alt="Company Logo" class="logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="./main.html">Home</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+            <div class="container">
+				<a href="main.html">Login</a><li>
+				<a href="main.html">Register</a><li>
+            </div>
+
+        </nav>
     </header>
+	
+	
+	
 
     <main class="main-content">
         <div class="left-column">
@@ -134,17 +130,29 @@ $cssFile = $villaInfo['cssFile'];
             <h2>Hoogste biedingen</h2>
             <section id="bidding-section">
                 <div id="bids">
-                    <!-- Top 3 bids here -->
+                    <?php
+                    // Retrieve the top 3 bids from the database
+                    $sql = "SELECT * FROM bids WHERE villaNumber = '$villaNumber' ORDER BY bid DESC LIMIT 3";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<p>{$row['firstName']} {$row['lastName']}: €{$row['bid']}</p>";
+                        }
+                    }
+                    ?>
                 </div>
 
                 <div id="place-bid">
                     <h2>Doe een bod</h2>
-                    <form id="bidForm" action="<?php echo $_SERVER['PHP_SELF'] . '?villa=' . $villaNumber; ?>" method="post" onsubmit="saveBid(event)">
-                        <input type="text" id="firstName" placeholder="Voornaam" required>
-                        <input type="text" id="lastName" placeholder="Achternaam" required>
-                        <input type="tel" id="phoneNumber" placeholder="Telefoonnummer" required>
-                        <input type="email" id="email" placeholder="Email" required>
-                        <input type="number" id="bid" placeholder="Bod" min="0" required>
+                    <form id="bidForm" action="bid.php" method="post">
+
+						<input type="text" name="villaNumber" placeholder="villaNumber" value="<?php echo $villaNumber; ?>" hidden>
+                        <input type="text" name="firstName" placeholder="Voornaam" required>
+                        <input type="text" name="lastName" placeholder="Achternaam" required>
+                        <input type="tel" name="phoneNumber" placeholder="Telefoonnummer" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="number" name="bid" placeholder="Bod" min="1000000" max="100000000" required>
                         <input type="submit" value="Doe een bod">
                     </form>
                 </div>
@@ -198,56 +206,9 @@ $cssFile = $villaInfo['cssFile'];
     </a>
 
     <div class="copyright">
-      | © Elite Villa || Made by Ardjun Samuel & Vighnesh |
+      | © Elite Villa || Made by Ardjun, Samuel & Vighnesh |
     </div>
   </footer>
-
-  <script>
-    let bids = [];
-
-    function saveBid(event) {
-      event.preventDefault();
-
-      // Verzamel de data
-      var firstName = document.getElementById('firstName').value;
-      var lastName = document.getElementById('lastName').value;
-      var phoneNumber = document.getElementById('phoneNumber').value;
-      var email = document.getElementById('email').value;
-      var bidInput = document.getElementById('bid');
-      var bid = Number(bidInput.value);
-
-      // Controleer of het bod hoger is dan het hoogste bod
-      if (bids.length > 0 && bid <= Math.max(...bids.map(b => b.bid))) {
-        alert('Je bod moet hoger zijn dan het huidige hoogste bod.');
-        bidInput.classList.add('error');
-        return;
-      }
-
-      bidInput.classList.remove('error');
-
-      // Voeg het bod toe aan de lijst van biedingen
-      bids.push({
-        firstName,
-        lastName,
-        phoneNumber,
-        email,
-        bid
-      });
-
-      // Sorteer de biedingen en toon de top 3
-      bids.sort((a, b) => b.bid - a.bid);
-      let topBids = bids.slice(0, 3);
-
-      let bidDiv = document.getElementById('bids');
-      bidDiv.innerHTML = '';
-      for (let bid of topBids) {
-        bidDiv.innerHTML += `<p>${bid.firstName} ${bid.lastName}: €${bid.bid}</p>`;
-      }
-
-      // Reset het formulier
-      document.getElementById('bidForm').reset();
-    }
-  </script>
 </body>
 
 </html>

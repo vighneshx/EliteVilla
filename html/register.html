@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Ons - EliteVilla</title>
+    <title>Register - EliteVilla</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -42,40 +42,22 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <h1 class="text-center">Neem contact met ons op</h1>
-                    <p class="text-center">Heb je vragen of wil je iets delen? Voel je vrij om contact met ons op te
-                        nemen.</p>
                     <div class="card">
                         <div class="card-body">
                             <form method="post" id="contactForm" name="contactForm"
-                                action="contactPost.php">
+                                action="registerPost.php">
                                 <div class="form-group">
-                                    <label for="name">Naam:</label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="voornaam achternaam" required>
+                                    <label for="username">Username:</label>
+                                    <input type="text" class="form-control" name="username" id="username"
+                                        placeholder="username" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Adres:</label>
-                                    <input type="text" class="form-control" name="address" id="address"
-                                        placeholder="adres naam" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Telefoonnummer:</label>
-                                    <input type="tel" class="form-control" name="phone" id="phone"
-                                        placeholder="06 12345678" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="elitevilla@gmail.com" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="question">Vraag / Opmerking:</label>
-                                    <textarea class="form-control" name="question" id="question" rows="4"
-                                        placeholder="Hello..." required></textarea>
+                                    <label for="address">Password:</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="password" required>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Verstuur</button>
+                                    <button type="submit" class="btn btn-primary">Register</button>
                                 </div>
                             </form>
                             <div id="form-message-warning mt-4"></div>
