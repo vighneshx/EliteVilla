@@ -39,9 +39,6 @@ body {
   color: #ddd;
 }
 
-.nav-links::before {
-	content: "GAY";
-
 .nav-button {
     color: white;
     background-color: cyan;
